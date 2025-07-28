@@ -1,0 +1,29 @@
+{
+  "originUrl": "https://www.nrma.com.au",
+  "urls": [
+    {
+      "url": "https://www.nrma.com.au/home-loans",
+      "source": "MANUAL",
+      "targetPath": "/home-loans",
+      "id": "c6fa4982f4af50718d8de8eb73ed3f66c40ee9ff"
+    },
+    {
+      "url": "https://www.nrma.com.au/home-loans/faqs",
+      "source": "MANUAL",
+      "targetPath": "/home-loans/faqs",
+      "id": "bcb8db4f04849078333c039b229123dff4ee0412"
+    },
+    {
+      "url": "https://www.nrma.com.au/home-loans/rates-fees",
+      "source": "MANUAL",
+      "targetPath": "/home-loans/rates-fees",
+      "id": "1b27225a33359e1462174d3d1e723903f1dda38c"
+    }
+  ],
+  "crawlOptions": {
+    "strategy": "manual",
+    "strategiesAttempted": [
+      "MANUAL"
+    ]
+  }
+}
