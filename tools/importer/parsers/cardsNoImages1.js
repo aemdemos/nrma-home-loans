@@ -34,7 +34,7 @@ export default function parse(element, { document }) {
     }
     // Add row only if we have content (defensive)
     if (cellContent.length > 0) {
-      rows.push([cellContent]);
+      rows.push([[], cellContent]);
     }
   });
 

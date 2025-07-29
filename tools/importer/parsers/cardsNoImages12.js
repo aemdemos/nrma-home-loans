@@ -29,7 +29,8 @@ export default function parse(element, { document }) {
       const repayments = card.querySelector('.c-product-selector__card__repayments');
       if (repayments) container.appendChild(repayments);
       // Add the container as a row
-      rows.push([container]);
+      rows.push([[], container]);
+
     }
   });
 
