@@ -1,39 +1,47 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // 1. Table header matches the block name exactly as in the example
-  const headerRow = ['Hero'];
+  // 1. Find .c-free-text__content inside the section
+  const contentSection = element.querySelector('.c-free-text__content');
 
-  // 2. No background image is present in the HTML, so 2nd row is empty string
-  const bgRow = [''];
+  // Defensive: If not found, do nothing
+  if (!contentSection) return;
 
-  // 3. Extract the main content (heading and paragraph)
-  // Look for .c-free-text__content > h2 and <p>
-  let content = element.querySelector('.c-free-text__content');
-  let contentElements = [];
-  if (content) {
-    // Grab all children that are headings or paragraphs
-    content.querySelectorAll('h1,h2,h3,h4,h5,h6,p').forEach(el => {
-      contentElements.push(el);
-    });
-  }
-  // Fallback if .c-free-text__content is not found
-  if (contentElements.length === 0) {
-    // Gather all direct children headings and paragraphs from the element
-    element.querySelectorAll('h1,h2,h3,h4,h5,h6,p').forEach(el => {
-      contentElements.push(el);
-    });
-  }
+  // 2. Extract the heading (title)
+  let title = contentSection.querySelector('h1, h2, h3, h4, h5, h6');
 
-  // If nothing is found, put an empty string
-  if (contentElements.length === 0) {
-    contentElements = [''];
+  // 3. Extract the paragraphs (subheading and possible CTA)
+  // All <p> children (in order)
+  const paragraphs = Array.from(contentSection.querySelectorAll('p')).filter(p => p.textContent.trim().length > 0);
+
+  // 4. Find CTA (<a>), if any, that is not already captured by the paragraph
+  let cta = null;
+  paragraphs.forEach(p => {
+    const possibleCta = p.querySelector('a');
+    if (possibleCta && !cta) {
+      cta = possibleCta;
+    }
+  });
+  if (!cta) {
+    // Look for any remaining <a>
+    cta = contentSection.querySelector('a');
   }
 
-  // 4. Build the table
+  // 5. Build the content cell for row 3: title, subheading, CTA
+  const contentCell = [];
+  if (title) contentCell.push(title);
+  if (paragraphs.length > 0) {
+    contentCell.push(...paragraphs);
+  }
+  // Only push CTA if it's not already visually present in the paragraphs
+  if (cta && !contentCell.some(e => e.contains && e.contains(cta))) {
+    contentCell.push(cta);
+  }
+
+  // 6. Hero table: header, background image (none), content
   const cells = [
-    headerRow,
-    bgRow,
-    [contentElements]
+    ['Hero'],
+    [''],
+    [contentCell]
   ];
 
   const table = WebImporter.DOMUtils.createTable(cells, document);

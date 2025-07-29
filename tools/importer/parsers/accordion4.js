@@ -1,44 +1,43 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Header row for Accordion block, matches the specified format
-  const cells = [
-    ['Accordion (accordion4)']
-  ];
+  // 1. Table header
+  const headerRow = ['Accordion (accordion4)'];
+  const rows = [headerRow];
 
-  // Get all accordion items (direct children of the accordion root element)
+  // 2. Get all top-level accordion items
   const items = element.querySelectorAll(':scope > .c-accordion__item');
-
   items.forEach((item) => {
-    // Get the accordion title
-    let titleEl = item.querySelector('.c-accordion__header-button .item-title');
-    let titleCell;
-    if (titleEl) {
-      // Use the reference to the span, not its text
-      titleCell = titleEl;
-    } else {
-      // Fallback to button text if no .item-title exists
-      const btn = item.querySelector('.c-accordion__header-button');
-      if (btn) {
-        titleCell = document.createTextNode(btn.textContent.trim());
+    // Get title from button > .item-title, else button text
+    let title = '';
+    const btn = item.querySelector('.c-accordion__header-button');
+    if (btn) {
+      const span = btn.querySelector('.item-title');
+      if (span) {
+        title = span.textContent.trim();
       } else {
-        titleCell = document.createTextNode('');
+        title = btn.textContent.trim();
       }
     }
 
-    // Get the accordion content: prefer the details div, fallback to content div
-    let contentCell = item.querySelector('.c-accordion__content__details');
-    if (!contentCell) {
-      contentCell = item.querySelector('.c-accordion__content');
-    }
-    // If still not found, fallback to an empty div
-    if (!contentCell) {
-      contentCell = document.createElement('div');
+    // Get content from .c-accordion__content__details, else .c-accordion__content
+    let content = '';
+    const details = item.querySelector('.c-accordion__content__details');
+    if (details) {
+      content = details;
+    } else {
+      const contentDiv = item.querySelector('.c-accordion__content');
+      if (contentDiv) {
+        content = contentDiv;
+      }
     }
 
-    cells.push([titleCell, contentCell]);
+    // Only add if there is a title (avoid empty rows)
+    if (title) {
+      rows.push([title, content]);
+    }
   });
 
-  // Create and insert the block table
-  const block = WebImporter.DOMUtils.createTable(cells, document);
-  element.replaceWith(block);
+  // 3. Create the table and replace the original element
+  const table = WebImporter.DOMUtils.createTable(rows, document);
+  element.replaceWith(table);
 }

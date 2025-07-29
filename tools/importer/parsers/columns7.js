@@ -1,41 +1,34 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Extract left content (headline + supporting copy)
-  const contentContainer = element.querySelector('.c-content-container__body');
-  let leftContent = '';
-  if (contentContainer) {
-    leftContent = contentContainer;
-  }
+  // Extract left column: content (heading + supporting copy)
+  const leftWrapper = element.querySelector('.c-hero-header-key-callout__content-wrapper');
+  const leftCol = leftWrapper || '';
 
-  // Extract right content (image from style background)
+  // Extract right column: image (from background-image style if any)
   const imgWrapper = element.querySelector('.c-hero-header-key-callout__image-wrapper');
-  let rightContent = '';
+  let rightCol = '';
   if (imgWrapper) {
     const style = imgWrapper.getAttribute('style') || '';
-    let imgUrl = '';
-    const matchLarge = style.match(/--image-large:\s*url\('([^']+)'\)/);
-    const matchMedium = style.match(/--image-medium:\s*url\('([^']+)'\)/);
-    const matchSmall = style.match(/--image-small:\s*url\('([^']+)'\)/);
-    if (matchLarge) {
-      imgUrl = matchLarge[1];
-    } else if (matchMedium) {
-      imgUrl = matchMedium[1];
-    } else if (matchSmall) {
-      imgUrl = matchSmall[1];
+    let imgUrl = null;
+    let match = /--image-large:\s*url\(['"]?([^'"]+)['"]?\)/.exec(style);
+    if (!match) match = /--image-medium:\s*url\(['"]?([^'"]+)['"]?\)/.exec(style);
+    if (!match) match = /--image-small:\s*url\(['"]?([^'"]+)['"]?\)/.exec(style);
+    if (match) {
+      imgUrl = match[1];
     }
     if (imgUrl) {
       const img = document.createElement('img');
       img.src = imgUrl;
-      img.alt = '';
-      rightContent = img;
+      img.setAttribute('loading', 'lazy');
+      rightCol = img;
     }
   }
 
-  // Header row: only one cell as required by spec
+  // Header row: only one cell (block name), as required
   const headerRow = ['Columns (columns7)'];
   const cells = [
     headerRow,
-    [leftContent, rightContent]
+    [leftCol, rightCol],
   ];
 
   const table = WebImporter.DOMUtils.createTable(cells, document);

@@ -1,49 +1,54 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Find the relevant container inside the element
-  const container = element.querySelector('.container');
-  if (!container) return;
+  // Get the inner container that holds the heading and icons
+  const mainContainer = element.querySelector('.c-flexible-wrapper.c-cvp-icons');
+  if (!mainContainer) return;
 
-  // Find the heading (likely h2, optional)
-  const heading = container.querySelector('h2');
+  // Get the main h2 heading if present
+  const heading = mainContainer.querySelector('h2');
+  let headingEl = null;
+  if (heading) {
+    headingEl = heading; // Reference the actual element, do not clone
+  }
 
-  // Find the icons row (.c-cvp-icons__items) and the icon items
-  const iconsRow = container.querySelector('.c-cvp-icons__items');
+  // Get the icons row (columns)
+  const iconsRow = mainContainer.querySelector('.c-cvp-icons__items');
   if (!iconsRow) return;
-  const iconItems = Array.from(iconsRow.children).filter(child => child.classList.contains('c-cvp-icon-item'));
 
-  // For each icon item, collect the icon (img) and its descriptive content
+  // Get all .c-cvp-icon-item elements (each column)
+  const iconItems = Array.from(iconsRow.querySelectorAll(':scope > .c-cvp-icon-item'));
+  if (iconItems.length === 0) return;
+
+  // For each icon-item (column), compose the content as an array
   const columns = iconItems.map(item => {
-    // Reference the existing img
+    const contents = [];
+    // Reference the first image in the column if present
     const img = item.querySelector('img');
-    // Reference the existing content div
+    if (img) contents.push(img);
+    // Reference the content div with the text (preserves substructure, <p>, <sup>, etc)
     const contentDiv = item.querySelector('.c-cvp-icon-item__content');
-    // Compose a fragment for the cell
-    const frag = document.createElement('div');
-    if (img) frag.appendChild(img);
-    // Append all children of contentDiv (to avoid unnecessary <div> wrappers)
-    if (contentDiv) {
-      Array.from(contentDiv.childNodes).forEach(child => {
-        frag.appendChild(child);
-      });
-    }
-    return frag;
+    if (contentDiv) contents.push(contentDiv);
+    return contents;
   });
 
-  // Build the block table for Columns (columns15)
-  const rows = [];
-  rows.push(['Columns (columns15)']); // Header
-  rows.push(columns); // The row of columns
+  // Table header must exactly match the block name
+  const headerRow = ['Columns (columns15)'];
 
-  // Create the block table using existing elements
-  const block = WebImporter.DOMUtils.createTable(rows, document);
-
-  // Replace the entire original element with the heading (if exists) and the block table
-  if (heading) {
-    // Remove heading from container so it only appears once
-    container.removeChild(heading);
-    element.replaceWith(heading, block);
+  let cells;
+  // If there's a heading, put it as a paragraph (single cell) row before the main columns row, spanning all columns
+  if (headingEl) {
+    cells = [
+      headerRow,
+      [headingEl],
+      columns
+    ];
   } else {
-    element.replaceWith(block);
+    cells = [
+      headerRow,
+      columns
+    ];
   }
+
+  const table = WebImporter.DOMUtils.createTable(cells, document);
+  element.replaceWith(table);
 }
