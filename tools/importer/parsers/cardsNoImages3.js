@@ -24,7 +24,7 @@ export default function parse(element, { document }) {
     if (cta) cellContent.push(cta);
     // Only add row if we have some content
     if (cellContent.length) {
-      rows.push([cellContent]);
+      rows.push([[], cellContent]);
     }
   });
 
