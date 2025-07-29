@@ -1,5 +1,5 @@
 mountpoints:
   /:
-    url: "https://author-p152749-e1584268.adobeaemcloud.com/bin/franklin.delivery/aemdemos/sausaxen-allsaints/main"
+    url: "https://author-p152749-e1584268.adobeaemcloud.com/bin/franklin.delivery/aemdemos/nrma-home-loans/main"
     type: "markup"
     suffix: ".html"
