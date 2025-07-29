@@ -1,7 +1,7 @@
 {
   "templates": [
     {
-      "name": "'Directory Listing'",
+      "name": "'Directory Listing Page'",
       "cluster": 1,
       "pages": [
         {
