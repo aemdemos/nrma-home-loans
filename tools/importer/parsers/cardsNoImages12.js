@@ -23,9 +23,7 @@ export default function parse(element, { document }) {
         cellContent.push(link);
       });
     }
-
-    // Add this card row
-    rows.push([cellContent]);
+    rows.push([[], cellContent]);
   });
 
   // Create table and replace original element
