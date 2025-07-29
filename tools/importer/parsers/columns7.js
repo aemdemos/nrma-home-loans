@@ -1,36 +1,28 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Extract left column: content (heading + supporting copy)
-  const leftWrapper = element.querySelector('.c-hero-header-key-callout__content-wrapper');
-  const leftCol = leftWrapper || '';
+  // Locate the deepest content row with two columns
+  const mainRows = element.querySelectorAll('.c-free-text__content > .container > .row');
+  if (!mainRows || mainRows.length === 0) return;
+  const innerRow = mainRows[0];
+  const columns = innerRow.querySelectorAll(':scope > div');
 
-  // Extract right column: image (from background-image style if any)
-  const imgWrapper = element.querySelector('.c-hero-header-key-callout__image-wrapper');
-  let rightCol = '';
-  if (imgWrapper) {
-    const style = imgWrapper.getAttribute('style') || '';
-    let imgUrl = null;
-    let match = /--image-large:\s*url\(['"]?([^'"]+)['"]?\)/.exec(style);
-    if (!match) match = /--image-medium:\s*url\(['"]?([^'"]+)['"]?\)/.exec(style);
-    if (!match) match = /--image-small:\s*url\(['"]?([^'"]+)['"]?\)/.exec(style);
-    if (match) {
-      imgUrl = match[1];
-    }
-    if (imgUrl) {
-      const img = document.createElement('img');
-      img.src = imgUrl;
-      img.setAttribute('loading', 'lazy');
-      rightCol = img;
-    }
-  }
+  // Defensive: make sure we have 2 columns
+  if (columns.length < 2) return;
 
-  // Header row: only one cell (block name), as required
+  // Column 1: the left column with heading + text
+  const col1 = columns[0];
+  // Column 2: the right column with the two images
+  const col2 = columns[1];
+
+  // Use the actual block name for the header row, as per markdown example
   const headerRow = ['Columns (columns7)'];
-  const cells = [
-    headerRow,
-    [leftCol, rightCol],
-  ];
 
-  const table = WebImporter.DOMUtils.createTable(cells, document);
+  // Compose the table: 1 row with two columns (one for each content section)
+  const tableCells = [headerRow, [col1, col2]];
+
+  // Create the table using the helper
+  const table = WebImporter.DOMUtils.createTable(tableCells, document);
+
+  // Replace the original element with the table
   element.replaceWith(table);
 }

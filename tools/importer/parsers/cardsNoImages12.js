@@ -1,40 +1,34 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Block header as per requirements
-  const header = ['Cards (cardsNoImages12)'];
-  const rows = [header];
+  // Table header must exactly match the block name: 'Cards'
+  const headerRow = ['Cards'];
+  const rows = [headerRow];
 
-  // Find all swiper-slide elements (one per card)
-  const slides = element.querySelectorAll('.swiper-slide');
-  slides.forEach(slide => {
-    // Each card is inside .c-product-selector__card
-    const card = slide.querySelector('.c-product-selector__card');
-    if (card) {
-      // Create a container for this card
-      const container = document.createElement('div');
-      // For each visible section in card, append in order
-      // Motivator (top label)
-      const motivator = card.querySelector('.c-hl-motivator');
-      if (motivator) container.appendChild(motivator);
-      // Product details (heading and ul)
-      const prod = card.querySelector('.c-product-selector__card__product');
-      if (prod) container.appendChild(prod);
-      // Rates (interest & comparison rates)
-      const rates = card.querySelector('.c-product-selector__card__rates');
-      if (rates) container.appendChild(rates);
-      // Features (features list)
-      const features = card.querySelector('.c-product-selector__card__features');
-      if (features) container.appendChild(features);
-      // Repayments section (heading, amount, notes, CTA)
-      const repayments = card.querySelector('.c-product-selector__card__repayments');
-      if (repayments) container.appendChild(repayments);
-      // Add the container as a row
-      rows.push([[], container]);
+  // Get all card elements in the section
+  const cardElements = element.querySelectorAll('.c-card');
+  cardElements.forEach((card) => {
+    const cellContent = [];
 
+    // Card title (h3)
+    const heading = card.querySelector('.c-card__content h3');
+    if (heading) cellContent.push(heading);
+
+    // If there are CTAs, they are in the .c-button-wrapper-stack
+    const buttonWrapper = card.querySelector('.c-button-wrapper-stack');
+    if (buttonWrapper) {
+      // Place all links on new lines
+      const links = buttonWrapper.querySelectorAll('a');
+      links.forEach((link, idx) => {
+        if (idx > 0) cellContent.push(document.createElement('br'));
+        cellContent.push(link);
+      });
     }
+
+    // Add this card row
+    rows.push([cellContent]);
   });
 
-  // Build the table
+  // Create table and replace original element
   const table = WebImporter.DOMUtils.createTable(rows, document);
   element.replaceWith(table);
 }
