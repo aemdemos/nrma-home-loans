@@ -57,11 +57,11 @@
   ],
   "blocks": [
     {
-      "name": "Cards (no images)",
+      "name": "Cards",
       "cluster": 1,
       "source": "Cards",
-      "target": "Cards (cardsNoImages1)",
-      "key": "cardsNoImages1",
+      "target": "Cards (cards1)",
+      "key": "cards1",
       "instances": [
         {
           "url": "https://www.nrma.com.au/home-loans/rates-fees",
@@ -235,11 +235,11 @@
       ]
     },
     {
-      "name": "Cards (no images)",
+      "name": "Cards",
       "cluster": 12,
       "source": "Cards",
-      "target": "Cards (cardsNoImages12)",
-      "key": "cardsNoImages12",
+      "target": "Cards (cards12)",
+      "key": "cards12",
       "instances": [
         {
           "url": "https://www.nrma.com.au/home-loans",
@@ -254,7 +254,7 @@
       "name": "Cards",
       "cluster": 13,
       "source": "Cards",
-      "target": "Cards",
+      "target": "Cards (cards13)",
       "key": "cards13",
       "instances": [
         {
