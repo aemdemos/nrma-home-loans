@@ -1,46 +1,40 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Accordion block table header, as per block name and requirements
-  const headerRow = ['Accordion (accordion11)'];
-  const rows = [headerRow];
-  // Select all accordion items directly under the main accordion container
+  // Step 1: Prepare the block header row
+  const cells = [['Accordion (accordion11)']];
+
+  // Step 2: Select all accordion items directly under the main element
   const items = element.querySelectorAll(':scope > .c-accordion__item');
+
   items.forEach(item => {
-    // Title cell: get the span with the item-title class inside the header button
-    let titleEl = item.querySelector('.c-accordion__header-button .item-title');
-    if (!titleEl) {
-      // fallback: use button or h3 if .item-title span is missing
-      const btn = item.querySelector('.c-accordion__header-button');
-      if (btn) {
-        titleEl = btn;
+    // Title cell: Prefer the span inside the button for the question/title
+    let titleCell = '';
+    const button = item.querySelector('.c-accordion__header-button');
+    if (button) {
+      const span = button.querySelector('.item-title');
+      if (span) {
+        titleCell = span;
       } else {
-        const h3 = item.querySelector('h3');
-        titleEl = h3 ? h3 : document.createTextNode('');
+        titleCell = button;
       }
     }
-    // Content cell: use all children of .c-accordion__content__details (to preserve formatting and links)
-    let contentCell;
+
+    // Content cell: use content details div, or empty string if not found
+    let contentCell = '';
     const details = item.querySelector('.c-accordion__content__details');
     if (details) {
-      // Gather all child nodes that are elements or non-empty text nodes
-      const nodes = Array.from(details.childNodes).filter(n => n.nodeType === 1 || (n.nodeType === 3 && n.textContent.trim() !== ''));
-      if (nodes.length === 1) {
-        contentCell = nodes[0];
+      // Use all children if any, otherwise the whole details element
+      if (details.children.length > 0) {
+        contentCell = Array.from(details.children);
       } else {
-        contentCell = nodes;
-      }
-    } else {
-      // fallback: try .c-accordion__content
-      const content = item.querySelector('.c-accordion__content');
-      if (content) {
-        const nodes = Array.from(content.childNodes).filter(n => n.nodeType === 1 || (n.nodeType === 3 && n.textContent.trim() !== ''));
-        contentCell = nodes.length === 1 ? nodes[0] : nodes;
-      } else {
-        contentCell = document.createTextNode('');
+        contentCell = details;
       }
     }
-    rows.push([titleEl, contentCell]);
+    // Push as a row: [titleCell, contentCell]
+    cells.push([titleCell, contentCell]);
   });
-  const table = WebImporter.DOMUtils.createTable(rows, document);
+
+  // Step 3: Build and replace the element with the new table block
+  const table = WebImporter.DOMUtils.createTable(cells, document);
   element.replaceWith(table);
 }

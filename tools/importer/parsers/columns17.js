@@ -1,48 +1,46 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Get the two column section
-  const twoColSection = element.querySelector('.c-two-col-generic');
-  if (!twoColSection) return;
-
-  // Get the row containing the columns
-  const row = twoColSection.querySelector('.row.u-flex-wrapper, .row.no-gutters.u-flex-wrapper, .row.no-gutters');
-  if (!row) return;
-
-  // Get the two columns (left: image, right: content)
-  const colDivs = row.querySelectorAll(':scope > div');
-  if (colDivs.length < 2) return;
-
-  // LEFT COLUMN: image background
-  const imageCol = colDivs[0];
-  let imgEl = null;
-  const bgStyle = imageCol.getAttribute('style') || '';
-  const match = bgStyle.match(/background-image:\s*url\(["']?([^"')]+)["']?\)/i);
-  if (match && match[1]) {
-    imgEl = document.createElement('img');
-    imgEl.src = match[1];
-    imgEl.alt = '';
+  // Get the main row containing columns
+  const row = element.querySelector('.row');
+  let columns = [];
+  if (row) {
+    columns = Array.from(row.children);
+  } else {
+    // fallback, just in case
+    columns = Array.from(element.querySelectorAll(':scope > div'));
   }
-  // If no image found, put empty string to maintain column structure
-  const leftCell = imgEl || '';
 
-  // RIGHT COLUMN: All content (heading, paragraph, list, buttons)
-  const textCol = colDivs[1];
-  // We'll collect both the card content and the buttons
-  const contents = [];
-  const cardContent = textCol.querySelector('.c-card__content');
-  if (cardContent) contents.push(cardContent);
-  const buttonWrapper = textCol.querySelector('.c-button-wrapper');
-  if (buttonWrapper) contents.push(buttonWrapper);
-  // If both not found, keep column empty
-  const rightCell = contents.length ? contents : '';
+  // Find the left (image) column and right (text) column
+  let imageCell = null;
+  let textCell = null;
+  columns.forEach(col => {
+    if (col.classList.contains('c-two-col-generic__image-wrapper')) {
+      // Background image as <img>
+      const style = col.getAttribute('style') || '';
+      const urlMatch = style.match(/url\(("|')?(.*?)\1\)/i);
+      if (urlMatch && urlMatch[2]) {
+        const img = document.createElement('img');
+        img.src = urlMatch[2];
+        img.alt = '';
+        imageCell = img;
+      } else {
+        imageCell = col;
+      }
+    } else if (col.classList.contains('c-two-col-generic__text-wrapper')) {
+      // Use the .c-card as the main text container if available
+      const card = col.querySelector('.c-card');
+      textCell = card ? card : col;
+    }
+  });
 
-  // Compose table rows
-  const cells = [
-    ['Columns (columns17)'],
-    [leftCell, rightCell]
-  ];
+  // Fallback if columns not found properly (shouldn't happen with the given HTML)
+  if (!imageCell && columns[0]) imageCell = columns[0];
+  if (!textCell && columns[1]) textCell = columns[1];
 
-  // Create and replace
-  const table = WebImporter.DOMUtils.createTable(cells, document);
+  // Build the block table
+  const headerRow = ['Columns (columns17)'];
+  const contentRow = [imageCell, textCell].filter(Boolean);
+
+  const table = WebImporter.DOMUtils.createTable([headerRow, contentRow], document);
   element.replaceWith(table);
 }

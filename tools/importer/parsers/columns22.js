@@ -1,27 +1,29 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Find the flexible wrapper section containing the columns block
-  const flexSection = element.querySelector('.c-flexible-wrapper');
-  if (!flexSection) return;
-
-  // Inside .c-flexible-wrapper, find the container > row > columns
-  const row = flexSection.querySelector('.container > .row');
+  // Safe extraction of the .row with columns
+  const row = element.querySelector('.row');
   if (!row) return;
 
-  // The columns are direct children of the .row (e.g., .col-lg-4, .col-lg-8)
-  const columns = Array.from(row.children);
+  // Get ONLY the immediate column children (preserves order)
+  const columns = Array.from(row.children).filter(
+    (col) => col.classList.contains('col-lg-4') || col.classList.contains('col-lg-8')
+  );
 
-  // For columns block, each cell is all content within that col-*
-  // Use childNodes, not children, to capture text, elements, etc.
-  const contentRow = columns.map(col => Array.from(col.childNodes));
+  // Defensive: Ensure there are 2 columns
+  if (columns.length < 2) return;
 
-  // Block table header must match exactly
-  const cells = [
-    ['Columns (columns22)'],
+  // Reference actual column elements (do not clone or create new)
+  const col1 = columns[0];
+  const col2 = columns[1];
+
+  // Set up the columns table as per block requirements
+  const headerRow = ['Columns (columns22)'];
+  const contentRow = [col1, col2];
+  const table = WebImporter.DOMUtils.createTable([
+    headerRow,
     contentRow
-  ];
+  ], document);
 
-  const table = WebImporter.DOMUtils.createTable(cells, document);
-  // Replace the original element with the structured table block
+  // Replace the original element with the new table
   element.replaceWith(table);
 }

@@ -1,50 +1,47 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Header row
+  // Prepare the table header: it must match the block name exactly.
   const rows = [['Accordion (accordion6)']];
 
-  // Find immediate accordion item children
-  const items = Array.from(element.querySelectorAll(':scope > .c-accordion__item'));
-
+  // Find all accordion items (immediate children with class c-accordion__item)
+  const items = element.querySelectorAll(':scope > .c-accordion__item');
   items.forEach((item) => {
-    // Title: The <span class="item-title"> inside the button in h3
-    let title = '';
-    const titleBtn = item.querySelector('h3 .c-accordion__header-button .item-title');
-    if (titleBtn) {
-      title = titleBtn.textContent.trim();
-    } else {
-      // Fallback: button text or h3 text
-      const btn = item.querySelector('h3 button');
-      if (btn) {
-        title = btn.textContent.trim();
+    // Title cell: the .item-title span inside the button
+    let titleContent = '';
+    const button = item.querySelector('.c-accordion__header-button');
+    if (button) {
+      const titleSpan = button.querySelector('.item-title');
+      if (titleSpan) {
+        titleContent = titleSpan;
       } else {
-        const h3 = item.querySelector('h3');
-        if (h3) {
-          title = h3.textContent.trim();
-        }
+        // fallback to whole button if span missing
+        titleContent = button;
       }
     }
 
-    // Content: grab the content details if present, fallback to .c-accordion__content
-    let content = null;
-    const details = item.querySelector('.c-accordion__content__details');
-    if (details) {
-      content = details;
-    } else {
-      const accContent = item.querySelector('.c-accordion__content');
-      if (accContent) {
-        content = accContent;
+    // Content cell: the .c-accordion__content__details div, or fallback to wrapper/content if missing
+    let contentCell = '';
+    let contentDetails = item.querySelector('.c-accordion__content__details');
+    if (!contentDetails) {
+      // fallback: look for content region
+      const contentRegion = item.querySelector('.c-accordion__content');
+      if (contentRegion) {
+        // Use everything inside .c-accordion__content
+        contentCell = contentRegion;
       } else {
-        // fallback: entire content wrapper if nothing else
+        // fallback: the wrapper, or empty
         const wrapper = item.querySelector('.c-accordion__content-wrapper');
-        if (wrapper) content = wrapper;
+        contentCell = wrapper || '';
       }
+    } else {
+      contentCell = contentDetails;
     }
 
-    // Add a row for this accordion item
-    rows.push([title, content]);
+    // Push the row for this accordion item
+    rows.push([titleContent, contentCell]);
   });
 
-  const block = WebImporter.DOMUtils.createTable(rows, document);
-  element.replaceWith(block);
+  // Create the table and replace the original element
+  const table = WebImporter.DOMUtils.createTable(rows, document);
+  element.replaceWith(table);
 }

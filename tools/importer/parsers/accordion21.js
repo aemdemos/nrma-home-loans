@@ -1,42 +1,40 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Header row matches the block name exactly
-  const cells = [
-    ['Accordion (accordion21)']
-  ];
+  // Create the header cell with colspan=2
+  const headerCell = document.createElement('th');
+  headerCell.setAttribute('colspan', '2');
+  headerCell.textContent = 'Accordion (accordion21)';
+  const headerRow = [headerCell];
+  const rows = [headerRow];
 
-  // Each accordion item
+  // Get all accordion items (direct children with the accordion item class)
   const items = element.querySelectorAll(':scope > .c-accordion__item');
-  items.forEach(item => {
-    // Title (always mandatory): find '.item-title' span
-    let titleCell = '';
-    const itemTitle = item.querySelector('.c-accordion__header-button .item-title');
-    if (itemTitle) {
-      // Use the span element directly to preserve formatting
-      titleCell = itemTitle;
-    }
-    
-    // Content (mandatory): Prefer .c-accordion__content__details, fallback to .c-accordion__content
-    let contentCell = '';
-    let contentDetails = item.querySelector('.c-accordion__content__details');
-    if (contentDetails) {
-      contentCell = contentDetails;
+
+  items.forEach((item) => {
+    // Title cell: Find the button with the title span
+    let titleButton = item.querySelector('.c-accordion__header-button');
+    let titleSpan = titleButton && titleButton.querySelector('.item-title');
+    let titleContent = titleSpan ? titleSpan.textContent.trim() : '';
+    // Use a <p> for title for structure
+    const titleCell = document.createElement('p');
+    titleCell.textContent = titleContent;
+
+    // Content cell: Find the accordion content details
+    let details = item.querySelector('.c-accordion__content__details');
+    let contentCell = null;
+    if (details) {
+      // Move all children of details into a fragment
+      const fragment = document.createDocumentFragment();
+      Array.from(details.childNodes).forEach((node) => {
+        fragment.appendChild(node);
+      });
+      contentCell = fragment;
     } else {
-      const contentFallback = item.querySelector('.c-accordion__content');
-      if (contentFallback) contentCell = contentFallback;
+      // fallback: just put an empty div
+      contentCell = document.createElement('div');
     }
-    // If no content is found, set as empty fragment
-    if (!contentCell) {
-      contentCell = document.createDocumentFragment();
-    }
-
-    cells.push([
-      titleCell,
-      contentCell
-    ]);
+    rows.push([titleCell, contentCell]);
   });
-
-  // Create the accordion block table
-  const block = WebImporter.DOMUtils.createTable(cells, document);
-  element.replaceWith(block);
+  const table = WebImporter.DOMUtils.createTable(rows, document);
+  element.replaceWith(table);
 }

@@ -1,41 +1,41 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Accordion block header as per spec
-  const headerRow = ['Accordion (accordion5)'];
+  // Gather all accordion items
+  const items = element.querySelectorAll(':scope > .c-accordion__item');
 
-  // The array of rows for the table
+  // Count the number of columns for header row: for this block, always 2 (title, content)
+  const numCols = 2;
+
+  // Build the header row with the correct colspan
+  const headerCell = document.createElement('th');
+  headerCell.textContent = 'Accordion (accordion5)';
+  headerCell.colSpan = numCols;
+  const headerRow = [headerCell];
+
   const rows = [headerRow];
 
-  // Get all accordion items (direct children)
-  const items = element.querySelectorAll(':scope > .c-accordion__item');
-  items.forEach(item => {
-    // Title cell: button > .item-title
-    let titleText = '';
-    const button = item.querySelector('button.c-accordion__header-button');
+  items.forEach((item) => {
+    // Title cell
+    let titleEl = null;
+    const button = item.querySelector('.c-accordion__header-button');
     if (button) {
       const span = button.querySelector('.item-title');
       if (span) {
-        titleText = span.textContent.trim();
+        titleEl = span;
       } else {
-        titleText = button.textContent.trim();
+        titleEl = button;
       }
     }
-
-    // Content cell: .c-accordion__content__details or fallback
+    // Content cell
     let contentEl = item.querySelector('.c-accordion__content__details');
     if (!contentEl) {
-      // fallback to .c-accordion__content if details missing
-      contentEl = item.querySelector('.c-accordion__content');
+      contentEl = item.querySelector('.c-accordion__content') || item.querySelector('.c-accordion__content-wrapper');
     }
-    if (!contentEl) {
-      // fallback to an empty div if no content found
-      contentEl = document.createElement('div');
+    if (titleEl && contentEl) {
+      rows.push([titleEl, contentEl]);
     }
-
-    rows.push([titleText, contentEl]);
   });
 
-  // Create and replace with the new table
   const table = WebImporter.DOMUtils.createTable(rows, document);
   element.replaceWith(table);
 }
