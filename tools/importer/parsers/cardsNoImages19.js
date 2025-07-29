@@ -15,7 +15,7 @@ export default function parse(element, { document }) {
     if (description) frag.appendChild(description);
     // Only add card row if there's any content
     if (frag.childNodes.length) {
-      rows.push([frag]);
+      rows.push([[], frag]);
     }
   });
 
