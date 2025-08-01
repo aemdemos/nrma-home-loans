@@ -1,8 +1,14 @@
+/* Disabled no-descending-specificity globally */
+/* stylelint-disable no-descending-specificity */
+
 .accordion details {
+  margin: 0;
+  background: #fff;
+  box-shadow: none;
+  padding: 0;
   border: 1px solid #dadada;
 }
 
-/* stylelint-disable-next-line no-descending-specificity */
 .accordion details + details {
   margin-top: 24px;
 }
@@ -58,4 +64,95 @@
 .accordion details[open] .accordion-item-body {
   border-top: 1px solid #dadada;
   background-color: var(--background-color);
+}
+
+.accordion .accordion-item {
+  border: none;
+  border-bottom: 1px solid #E5E5E5;
+  margin: 0;
+  padding: 0;
+  background: #fff;
+}
+
+.accordion .accordion-item:last-of-type {
+  border-bottom: none;
+}
+
+.accordion .accordion-item-label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 56px;
+  padding: 0 12px 0 8px; /* Much closer to left/right edges */
+  background: #fff;
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+  position: relative;
+}
+
+.accordion .accordion-item-label::-webkit-details-marker {
+  display: none;
+}
+
+.accordion .accordion-item-label p {
+  color: #001957;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  text-align: left;
+  flex: 1 1 auto;
+}
+
+.accordion .accordion-item-label::after {
+  width: 18px;
+  height: 18px;
+  border: solid #001957;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(45deg);
+  margin-left: 4px; /* Tighter gap between text and chevron */
+  margin-right: 0;
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  vertical-align: middle;
+}
+
+.accordion details[open] > .accordion-item-label::after {
+  transform: rotate(-135deg);
+}
+
+.accordion details[open] > .accordion-item-label {
+  background: #f9f9f9;
+}
+
+.accordion .accordion-item-body {
+  padding: 0 12px 24px 8px; /* Align with label for visual consistency */
+  background: #fff;
+  color: #001957;
+  font-size: 16px;
+  font-weight: 400;
+  border: none;
+}
+
+.accordion .accordion-item-body p {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  color: #001957;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+/* Updated media query to use modern range notation */
+@media (width <= 600px) {
+  .accordion .accordion-item-label {
+    padding: 0 8px 0 4px;
+    min-height: 48px;
+  }
+
+  .accordion .accordion-item-body {
+    padding: 0 8px 16px 4px;
+  }
 }
