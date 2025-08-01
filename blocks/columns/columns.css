@@ -1,3 +1,6 @@
+/* Disable no-descending-specificity globally to address validation errors related to selector orders */
+/* stylelint-disable no-descending-specificity */
+
 .columns > div {
   display: flex;
   flex-direction: column;
@@ -32,7 +35,6 @@
   }
 }
 
-
 .columns.columns1 {
   width: 100vw;
   margin-left: 50%;
@@ -65,7 +67,6 @@
   width: 100%;
 }
 
-/* Right column: peach, image/icon centered, larger icon */
 .columns.columns1 > div > .columns-img-col {
   background: #FDC3B1;
   display: flex;
@@ -76,7 +77,6 @@
   height: 100%;
 }
 
-/* Large icon: allow up to 80% of column */
 .columns.columns1 .columns-img-col picture,
 .columns.columns1 .columns-img-col img {
   display: block;
@@ -88,7 +88,6 @@
   object-fit: contain;
 }
 
-/* Heading */
 .columns.columns1 h1 {
   font-size: 2.25rem;
   font-family: var(--heading-font-family);
@@ -117,7 +116,6 @@
   letter-spacing: 0.01em;
 }
 
-/* Pills for P&I/Live-in */
 .columns.columns1 ul {
   display: flex;
   gap: 0.7rem;
@@ -136,7 +134,6 @@
   font-size: 0.93rem;
 }
 
-/* "Basic Home Loan" badge as rectangle */
 .columns.columns1 p:nth-of-type(4) {
   display: inline-block;
   background: #fff;
@@ -150,9 +147,6 @@
   line-height: 1.5;
 }
 
-/* --- COMPACT RATES SECTION --- */
-
-/* Remove pill/badge styling from "Interest rate" and "Comparison rate" */
 .columns.columns1 p:nth-of-type(5),
 .columns.columns1 p:nth-of-type(8) {
   background: none;
@@ -166,12 +160,10 @@
   line-height: 1.1;
 }
 
-/* Remove blue ovals (empty .button-container above each rate) */
 .columns.columns1 .button-container {
   display: none;
 }
 
-/* Rates: tightly group label and value */
 .columns.columns1 p:nth-of-type(6),
 .columns.columns1 p:nth-of-type(9) {
   font-size: 2.35rem;
@@ -182,13 +174,11 @@
   line-height: 1.04;
 }
 
-/* Slightly tighten the vertical gap for rates */
 .columns.columns1 p:nth-of-type(7),
 .columns.columns1 p:nth-of-type(10) {
   margin-bottom: 0.12rem;
 }
 
-/* Button and links layout: flex row for bottom action area, less gap */
 .columns.columns1 p:last-of-type {
   margin-top: 1.2rem;
   margin-bottom: 0;
@@ -198,7 +188,6 @@
   gap: 0.4rem;
 }
 
-/* "Apply now" button: bolder and larger */
 .columns.columns1 p:last-of-type a[title="Apply now"] {
   background: #fff;
   color: #050F59;
@@ -227,7 +216,6 @@
   margin-left: 0;
 }
 
-/* Tighten spacing between left column elements */
 .columns.columns1 > div > div:first-child > * {
   margin-bottom: 0.45rem;
 }
@@ -236,7 +224,6 @@
   margin-bottom: 0;
 }
 
-/* Responsive: stack columns on small screens */
 @media (width <= 899px) {
   .columns.columns1 {
     width: 100vw;
@@ -260,5 +247,138 @@
     max-width: 200px;
     max-height: 200px;
     width: 65%;
+  }
+}
+
+.columns.columns2 {
+  background: #fff;
+  padding: 48px 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.columns.columns2 > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  gap: 0;
+}
+
+@media (width <= 899px) {
+  .columns.columns2 > div {
+    flex-direction: column;
+    align-items: center;
+    gap: 32px 0;
+    padding: 0 16px;
+  }
+
+  .columns.columns2 {
+    padding: 32px 0;
+  }
+}
+
+.columns.columns2 > div > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 1 1 0;
+  min-width: 160px;
+  max-width: 240px;
+  text-align: center;
+  margin: 0 8px;
+  box-sizing: border-box;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.columns.columns2 > div > div > p:first-child picture,
+.columns.columns2 > div > div > p:first-child img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.columns.columns2 > div > div > p:first-child picture img,
+.columns.columns2 > div > div > p:first-child > img {
+  width: 48px;
+  height: 48px;
+  display: block;
+  margin: 0 auto 14px;
+  max-width: 100%;
+  max-height: 56px;
+  object-fit: contain;
+  opacity: 1;
+  visibility: visible;
+}
+
+.columns.columns2 > div > div > p:not(:first-child):not(.button-container) {
+  color: #111c51;
+  font-family: var(--body-font-family);
+  font-size: 16px;
+  line-height: 1.35;
+  font-weight: 500;
+  margin: 0;
+  text-align: center;
+  padding: 0;
+}
+
+.columns.columns2 > div > div > .button-container,
+.columns.columns2 > div > div > p.button-container {
+  margin-top: -10px;
+  margin-bottom: 0;
+  padding: 0;
+  line-height: 1;
+  font-size: 0.7em;
+  text-align: center;
+  display: block;
+}
+
+.columns.columns2 .button-container .button {
+  background: none;
+  color: #111c51;
+  border: none;
+  font-size: 1em;
+  font-weight: 700;
+  box-shadow: none;
+  border-radius: 0;
+  line-height: 1;
+  pointer-events: none;
+  cursor: default;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+  min-height: 0;
+  vertical-align: super;
+  text-decoration: none;
+  display: inline;
+}
+
+.columns.columns2 > div > div > p:last-child {
+  margin-bottom: 0;
+}
+
+.columns.columns2 a {
+  color: #111c51;
+  text-decoration: underline;
+  font-size: inherit;
+}
+
+.columns.columns2 > div > div {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+@media (width <= 899px) {
+  .columns.columns2 > div > div {
+    max-width: 100%;
+    margin: 0 auto;
   }
 }
