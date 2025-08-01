@@ -51,8 +51,6 @@
   min-height: 0;
   scroll-padding-left: 0;
 }
-
-/* Remove default margin for first/last card */
 .cards.cards3 > ul > li:first-child {
   margin-left: 0;
 }
@@ -91,8 +89,6 @@
   color: #001B49;
   background: transparent;
 }
-
-/* Remove blue dots from footnote/empty buttons */
 .cards.cards3 .cards-card-body .button-container:not(:last-of-type) .button {
   background: transparent;
   color: inherit;
@@ -108,8 +104,6 @@
   font-size: 0;
   line-height: 1;
 }
-
-/* Badge Styles */
 .cards.cards3 .cards-card-body > p:first-child {
   position: absolute;
   top: 24px;
@@ -131,8 +125,6 @@
   line-height: 1.3;
   box-shadow: 0 1px 2px rgba(34,84,61,0.03);
 }
-
-/* Headline */
 .cards.cards3 .cards-card-body h3 {
   margin: 30px 0 5px 0;
   font-size: 22px;
@@ -152,8 +144,6 @@
   font-size: 15px;
   color: #6C6F73;
 }
-
-/* ==== RATES SIDE-BY-SIDE ==== */
 .cards.cards3 .cards-card-body .rates-flex-row {
   display: flex;
   flex-direction: row;
@@ -170,10 +160,7 @@
   min-width: 0;
   box-sizing: border-box;
 }
-
-/* Use nth-of-type to create a "fake" rates row given the DOM */
 .cards.cards3 .cards-card-body > .rates-flex-row {
-  /* for possible JS enhancement */
 }
 
 .cards.cards3 .cards-card-body .rates-label {
@@ -196,8 +183,6 @@
 .cards.cards3 .cards-card-body > .rates-floats {
   clear: both;
 }
-
-/* If unable to add wrapper, use floats for side-by-side for current HTML */
 .cards.cards3 .cards-card-body > p:nth-of-type(4),
 .cards.cards3 .cards-card-body > p:nth-of-type(5),
 .cards.cards3 .cards-card-body > p:nth-of-type(8),
@@ -249,8 +234,6 @@
   display: block;
   clear: both;
 }
-
-/* Section divider before features */
 .cards.cards3 .cards-card-body > h4[id^="features"] {
   font-size: 15px;
   color: #001B49;
@@ -260,8 +243,6 @@
   border-top: 1px solid #e6e6e6;
   padding-top: 18px;
 }
-
-/* Features list (second ul) */
 .cards.cards3 .cards-card-body > ul:nth-of-type(2) {
   font-size: 15px;
   color: #6C6F73;
@@ -269,8 +250,6 @@
   padding-left: 18px;
   list-style-type: disc;
 }
-
-/* Repayments */
 .cards.cards3 .cards-card-body > h4[id^="repayments"] {
   font-size: 15px;
   color: #001B49;
@@ -294,8 +273,6 @@
   margin-top: 0;
   line-height: 1.4;
 }
-
-/* Apply button (last-of-type only) */
 .cards.cards3 .cards-card-body > p.button-container:last-of-type a.button {
   display: block;
   width: 100%;
@@ -320,8 +297,6 @@
 .cards.cards3 .cards-card-body > p.button-container:last-of-type a.button:focus {
   background: #18305A;
 }
-
-/* General typography resets for spacing inside cards */
 .cards.cards3 .cards-card-body > ul,
 .cards.cards3 .cards-card-body > p,
 .cards.cards3 .cards-card-body > h3,
@@ -329,8 +304,6 @@
   margin-left: 0;
   margin-right: 0;
 }
-
-/* Responsiveness */
 @media (max-width: 1100px) {
   .cards.cards3 > ul {
     gap: 20px;
@@ -371,4 +344,157 @@
     min-width: 180px;
     max-width: 97vw;
   }
+}
+
+
+.cards.cards10 {
+  background: #DBEDE4;
+  padding: 0;
+}
+
+.cards.cards10 > ul {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 40px 8px 40px 8px;
+  list-style: none;
+  justify-items: center;
+  align-items: start;
+  background: transparent;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+@media (max-width: 1200px) {
+  .cards.cards10 > ul {
+    max-width: 1040px;
+    padding: 32px 4px;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 900px) {
+  .cards.cards10 > ul {
+    grid-template-columns: 1fr;
+    max-width: 440px;
+    padding: 20px 2vw;
+    gap: 20px;
+  }
+}
+
+.cards.cards10 > ul > li {
+  background: #fff;
+  border: none;
+  border-radius: 24px;
+  box-shadow: 0 2px 8px rgba(3,37,140,0.04);
+  padding: 28px 24px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  max-width: 400px;
+  width: 100%;
+  box-sizing: border-box;
+  height: 100%;
+  justify-content: flex-start;
+}
+
+@media (max-width: 600px) {
+  .cards.cards10 > ul > li {
+    padding: 18px 2px 14px 2px;
+    max-width: 98vw;
+  }
+}
+
+.cards.cards10 .cards-card-body:first-child {
+  display: none;
+}
+
+.cards.cards10 .cards-card-body:not(:first-child) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  min-width: 0;
+}
+
+/* Calculator icon styling */
+.cards.cards10 .cards-card-body:not(:first-child)::before {
+  display: block;
+  width: 46px;
+  height: 46px;
+  margin-bottom: 0;
+  margin-top: 0;
+  background: url('data:image/svg+xml;utf8,<svg width="46" height="46" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="3" width="22" height="26" rx="4" stroke="%2303258C" stroke-width="2"/><rect x="10" y="8" width="12" height="3" rx="1.5" fill="%2303258C"/><rect x="10" y="14" width="4" height="4" rx="2" fill="%2303258C"/><rect x="18" y="14" width="4" height="4" rx="2" fill="%2303258C"/><rect x="10" y="20" width="4" height="4" rx="2" fill="%2303258C"/><rect x="18" y="20" width="4" height="4" rx="2" fill="%2303258C"/></svg>') no-repeat center/contain;
+  content: "";
+}
+
+/* Heading styles */
+.cards.cards10 .cards-card-body:not(:first-child) h3 {
+  color: #03258C;
+  font-size: 1.31rem; /* ~21px */
+  font-family: var(--heading-font-family);
+  font-weight: 600;
+  text-align: center;
+  margin: 0 0 10px 0;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+}
+
+/* Description style, max-width for better wrapping */
+.cards.cards10 .cards-card-body:not(:first-child) p:not(.button-container) {
+  color: #4B5563;
+  font-size: 1.09rem; /* ~17.5px */
+  text-align: center;
+  font-weight: 400;
+  margin: 0 0 20px 0;
+  line-height: 1.5;
+  padding: 0;
+  max-width: 350px;
+}
+
+/* Button container centering */
+.cards.cards10 .cards-card-body:not(:first-child) .button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+/* Outlined pill button matches the reference more closely */
+.cards.cards10 .cards-card-body:not(:first-child) .button-container .button {
+  background: #fff;
+  color: #03258C;
+  border: 2px solid #03258C;
+  border-radius: 32px;
+  padding: 14px 58px;
+  font-size: 1.09rem; /* ~17.5px */
+  font-weight: 600;
+  min-width: 232px;
+  max-width: 95%;
+  box-shadow: none;
+  margin: 0;
+  transition: background 0.15s, color 0.15s;
+  text-align: center;
+  line-height: 1.25;
+  letter-spacing: 0.01em;
+}
+
+.cards.cards10 .cards-card-body:not(:first-child) .button-container .button:hover,
+.cards.cards10 .cards-card-body:not(:first-child) .button-container .button:focus {
+  background: #03258C;
+  color: #fff;
+  border-color: #03258C;
+  text-decoration: none;
+}
+
+/* Remove button's default margin from base styles for consistency */
+.cards.cards10 .cards-card-body:not(:first-child) .button-container .button {
+  margin-top: 0;
+  margin-bottom: 0;
 }
