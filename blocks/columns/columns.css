@@ -618,8 +618,6 @@
   position: relative;
   overflow: visible;
 }
-
-/* Use flex for side-by-side layout and vertical centering of badges */
 .columns.columns7 > div {
   display: flex;
   flex-direction: row;
@@ -628,8 +626,6 @@
   gap: 36px;
   padding: 0;
 }
-
-/* Left column: tighter stack, compact vertical spacing */
 .columns.columns7 > div > div:first-child {
   display: flex;
   flex-direction: column;
@@ -662,8 +658,6 @@
 .columns.columns7 em {
   font-style: italic;
 }
-
-/* Superscript "5" styling (if present in HTML) */
 .columns.columns7 .button-container {
   display: inline-block;
   position: relative;
@@ -687,8 +681,6 @@
   line-height: 1;
   vertical-align: super;
 }
-
-/* Right column (badges/images) */
 .columns.columns7 > div > div:last-child {
   display: flex;
   flex-direction: row;
@@ -711,8 +703,6 @@
   display: block;
   border-radius: 12px;
 }
-
-/* Responsive: stack on small screens */
 @media (max-width: 900px) {
   .columns.columns7 {
     padding: 12px 8px;
@@ -740,5 +730,180 @@
   }
   .columns.columns7 {
     padding: 6px 2vw;
+  }
+}
+
+
+.columns.columns8 {
+  padding: 32px 0;
+  background: #fff;
+  font-family: var(--body-font-family);
+}
+
+/* Top-level: flex row, tight gap, top align */
+.columns.columns8 > div {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 22px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .columns.columns8 > div {
+    flex-direction: column;
+    gap: 32px;
+    max-width: 100%;
+  }
+}
+
+/* Peach block: more compact, no extra margin/padding */
+.columns.columns8 .columns-img-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F9C7B5;
+  width: 300px;
+  height: 320px;
+  min-width: 180px;
+  max-width: 100%;
+  box-sizing: border-box;
+  border-radius: 0;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* House image fills the peach block more */
+.columns.columns8 .columns-img-col picture,
+.columns.columns8 .columns-img-col img {
+  display: block;
+  margin: 0 auto;
+  max-width: 92%;
+  max-height: 92%;
+  width: auto;
+  height: auto;
+  background: none;
+}
+
+/* Text column: narrower, less space */
+.columns.columns8 .columns-img-col + div {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  max-width: 420px;
+  padding: 0;
+  color: #434364;
+  min-width: 0;
+}
+
+/* Heading: navy, prominent, well-spaced */
+.columns.columns8 .columns-img-col + div h2,
+.columns.columns8 .columns-img-col + div h1 {
+  color: #10104A;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 0 0 14px 0;
+  font-family: var(--heading-font-family);
+  line-height: 1.15;
+}
+
+/* Intro paragraph */
+.columns.columns8 .columns-img-col + div > p:first-of-type {
+  font-size: 1.06rem;
+  color: #434364;
+  margin: 0 0 14px 0;
+  line-height: 1.5;
+}
+
+/* Numbered steps */
+.columns.columns8 .columns-img-col + div ol {
+  color: #434364;
+  font-size: 1.01rem;
+  padding-left: 22px;
+  margin-bottom: 18px;
+  margin-top: 0;
+}
+
+.columns.columns8 .columns-img-col + div ol > li {
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+.columns.columns8 .columns-img-col + div ol p strong {
+  color: #10104A;
+  font-weight: 700;
+}
+
+/* Button and link row: left-aligned, tight below content */
+.columns.columns8 .columns-img-col + div > p:last-of-type {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 16px;
+  margin-top: 16px;
+  margin-bottom: 0;
+  padding: 0;
+  width: auto;
+}
+
+/* Button style for first link */
+.columns.columns8 .columns-img-col + div > p:last-of-type a:first-child {
+  background: #10104A;
+  color: #fff;
+  padding: 13px 28px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 1.06rem;
+  text-decoration: none;
+  border: none;
+  display: inline-block;
+  box-shadow: none;
+  transition: background 0.2s;
+  margin: 0;
+  line-height: 1.2;
+  min-width: 120px;
+  text-align: center;
+}
+
+.columns.columns8 .columns-img-col + div > p:last-of-type a:first-child:hover {
+  background: #292970;
+}
+
+/* Inline link style for second link */
+.columns.columns8 .columns-img-col + div > p:last-of-type a:last-child {
+  color: #10104A;
+  font-size: 1.06rem;
+  text-decoration: underline;
+  font-weight: 500;
+  display: inline-block;
+  padding-left: 0;
+  margin: 0;
+  line-height: 1.2;
+  transition: color 0.2s;
+  position: relative;
+  vertical-align: middle;
+}
+
+/* Arrow after link, baseline aligned */
+.columns.columns8 .columns-img-col + div > p:last-of-type a:last-child::after {
+  display: inline-block;
+  margin-left: 8px;
+  border: solid #10104A;
+  border-width: 0 2px 2px 0;
+  padding: 3px;
+  transform: rotate(-45deg) translateY(-1.5px);
+  vertical-align: middle;
+  width: 7px;
+  height: 7px;
+}
+
+/* Responsive: stack CTA row on small screens */
+@media (max-width: 540px) {
+  .columns.columns8 .columns-img-col + div > p:last-of-type {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
   }
 }
