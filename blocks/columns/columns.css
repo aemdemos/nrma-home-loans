@@ -32,221 +32,6 @@
   }
 }
 
-.columns.columns1 {
-  width: 100vw;
-  margin-left: 50%;
-  transform: translateX(-50%);
-  box-sizing: border-box;
-  display: block;
-}
-
-.columns.columns1 > div {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 620px;
-  align-items: stretch;
-  width: 100vw;
-  padding: 0;
-  margin: 0;
-  background: none;
-}
-
-.columns.columns1 > div > div:first-child {
-  background: #050F59;
-  color: #fff;
-  padding: 0 0 0 56px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  min-height: 620px;
-  box-sizing: border-box;
-  width: 100%;
-}
-
-.columns.columns1 > div > .columns-img-col {
-  background: #FDC3B1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 620px;
-  width: 100%;
-  height: 100%;
-}
-
-.columns.columns1 .columns-img-col picture,
-.columns.columns1 .columns-img-col img {
-  display: block;
-  max-width: 80%;
-  max-height: 80%;
-  width: auto;
-  height: auto;
-  margin: 0 auto;
-  object-fit: contain;
-}
-
-.columns.columns1 h1 {
-  font-size: 2.25rem;
-  font-family: var(--heading-font-family);
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 1.05rem;
-  margin-top: 0;
-  line-height: 1.13;
-  letter-spacing: -0.008em;
-}
-
-.columns.columns1 p:nth-of-type(1) {
-  color: #fff;
-  font-size: 1.02rem;
-  margin-bottom: 1.05rem;
-  margin-top: 0;
-  line-height: 1.5;
-  font-weight: 400;
-}
-
-.columns.columns1 p:nth-of-type(2) {
-  font-weight: 800;
-  color: #fff;
-  font-size: 1.03rem;
-  margin-bottom: 0.22rem;
-  letter-spacing: 0.01em;
-}
-
-.columns.columns1 ul {
-  display: flex;
-  gap: 0.7rem;
-  margin: 0 0 0.3rem;
-  padding: 0;
-  list-style: none;
-}
-
-.columns.columns1 ul li {
-  display: inline-block;
-  background: #fff;
-  color: #050F59;
-  border-radius: 999px;
-  padding: 0.16em 1em;
-  font-weight: 500;
-  font-size: 0.93rem;
-}
-
-.columns.columns1 p:nth-of-type(4) {
-  display: inline-block;
-  background: #fff;
-  color: #050F59;
-  border-radius: 5px;
-  padding: 0.10em 0.8em;
-  font-size: 0.90rem;
-  font-weight: 700;
-  margin: 0 0 0.5rem;
-  letter-spacing: 0.01em;
-  line-height: 1.5;
-}
-
-.columns.columns1 p:nth-of-type(5),
-.columns.columns1 p:nth-of-type(8) {
-  background: none;
-  color: #b3c0e2;
-  font-size: 0.96rem;
-  font-weight: 500;
-  border-radius: 0;
-  padding: 0;
-  margin: 0 0 0.03rem;
-  display: block;
-  line-height: 1.1;
-}
-
-.columns.columns1 .button-container {
-  display: none;
-}
-
-.columns.columns1 p:nth-of-type(6),
-.columns.columns1 p:nth-of-type(9) {
-  font-size: 2.35rem;
-  font-weight: 700;
-  color: #fff;
-  margin: 0 0 1rem;
-  letter-spacing: -0.01em;
-  line-height: 1.04;
-}
-
-.columns.columns1 p:nth-of-type(7),
-.columns.columns1 p:nth-of-type(10) {
-  margin-bottom: 0.12rem;
-}
-
-.columns.columns1 p:last-of-type {
-  margin-top: 1.2rem;
-  margin-bottom: 0;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.columns.columns1 p:last-of-type a[title="Apply now"] {
-  background: #fff;
-  color: #050F59;
-  font-weight: 800;
-  border-radius: 999px;
-  padding: 0.92rem 2.25rem;
-  font-size: 1.20rem;
-  display: inline-block;
-  text-decoration: none;
-  box-shadow: none;
-  border: none;
-  transition: background 0.15s;
-  min-width: 0;
-}
-
-.columns.columns1 p:last-of-type a[title="Apply now"]:hover,
-.columns.columns1 p:last-of-type a[title="Apply now"]:focus {
-  background: #e0e0e0;
-}
-
-.columns.columns1 p:last-of-type a[title="Calculate potential savings"] {
-  color: #fff;
-  text-decoration: underline;
-  font-size: 1.01rem;
-  font-weight: 400;
-  margin-left: 0;
-}
-
-.columns.columns1 > div > div:first-child > * {
-  margin-bottom: 0.45rem;
-}
-
-.columns.columns1 > div > div:first-child > *:last-child {
-  margin-bottom: 0;
-}
-
-@media (width <= 899px) {
-  .columns.columns1 {
-    width: 100vw;
-    margin-left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .columns.columns1 > div {
-    grid-template-columns: 1fr;
-    min-height: 0;
-  }
-
-  .columns.columns1 > div > div:first-child,
-  .columns.columns1 > div > .columns-img-col {
-    min-height: 240px;
-    padding: 30px 14px;
-  }
-
-  .columns.columns1 .columns-img-col picture,
-  .columns.columns1 .columns-img-col img {
-    max-width: 200px;
-    max-height: 200px;
-    width: 65%;
-  }
-}
-
 .columns.columns2 {
   background: #fff;
   padding: 48px 0;
@@ -907,8 +692,6 @@
     padding: 0 10px;
   }
 }
-
-/* Left column (heading) */
 .columns.columns9 > div > div:first-child {
   flex: 0 0 195px;
   display: flex;
@@ -916,8 +699,6 @@
   align-items: flex-start;
   justify-content: flex-start;
 }
-
-/* Tighter heading style for two-line wrap */
 .columns.columns9 h2 {
   color: #121972;
   font-weight: 700;
@@ -926,8 +707,6 @@
   margin: 0;
   padding: 0;
 }
-
-/* Right column (content) */
 .columns.columns9 > div > div:last-child {
   flex: 1 1 0;
   display: flex;
@@ -946,13 +725,9 @@
   margin-top: 0.7em;
   margin-bottom: 0.3em;
 }
-
-/* Remove top margin from first paragraph to align with heading */
 .columns.columns9 > div > div:last-child > p:first-child {
   margin-top: 0;
 }
-
-/* List: slightly more spacing between bullets */
 .columns.columns9 ul {
   padding-left: 22px;
   margin-bottom: 10px;
@@ -962,14 +737,10 @@
 .columns.columns9 li {
   margin-bottom: 2px;
 }
-
-/* Link color */
 .columns.columns9 a {
   color: #0052cc;
   text-decoration: underline;
 }
-
-/* Button container: left align, tight space above */
 .columns.columns9 .button-container {
   width: 100%;
   display: flex;
@@ -977,8 +748,6 @@
   padding: 0;
   margin: 8px 0 0 0;
 }
-
-/* Outlined button, slightly larger for better match */
 .columns.columns9 .button-container .button {
   margin: 0;
   border: 2px solid #121972;
@@ -1002,10 +771,265 @@
   border-color: #121972;
   text-decoration: none;
 }
-
-/* Responsive: keep button left-aligned on mobile */
 @media (max-width: 900px) {
   .columns.columns9 .button-container {
     justify-content: flex-start;
   }
+}
+
+
+.columns.columns1 {
+  width: 100vw;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  box-sizing: border-box;
+  padding: 0;
+}
+
+/* Main grid: two columns desktop, one column mobile, no gap between */
+.columns.columns1 > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100vw;
+  min-height: 540px;
+  gap: 0;
+  background: none;
+}
+@media (max-width: 899px) {
+  .columns.columns1 > div {
+    grid-template-columns: 1fr;
+    min-height: unset;
+    width: 100vw;
+  }
+}
+
+/* Left column: center content as a group, compact spacing */
+.columns.columns1 > div > div:first-child {
+  background: #070e53;
+  color: #fff;
+  min-height: 540px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 56px 48px 56px 56px;
+  box-sizing: border-box;
+  width: 100%;
+}
+@media (max-width: 899px) {
+  .columns.columns1 > div > div:first-child {
+    min-height: 320px;
+    padding: 32px 16px 32px 16px;
+  }
+}
+
+/* Tighter vertical spacing between all children */
+.columns.columns1 > div > div:first-child > * {
+  margin-bottom: 0.08rem;
+}
+.columns.columns1 > div > div:first-child > *:last-child {
+  margin-bottom: 0;
+}
+
+/* Headline */
+.columns.columns1 h1 {
+  font-size: 2.1rem;
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+  color: #fff;
+  margin-top: 0;
+  margin-bottom: 0.7rem;
+  line-height: 1.13;
+  letter-spacing: -0.008em;
+}
+
+/* Description */
+.columns.columns1 > div > div:first-child > p:nth-of-type(1) {
+  color: #fff;
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+  margin-top: 0;
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+/* "Variable" label */
+.columns.columns1 > div > div:first-child > p:nth-of-type(2) {
+  font-weight: 700;
+  color: #fff;
+  font-size: 1rem;
+  margin-bottom: 0.22rem;
+  letter-spacing: 0.01em;
+}
+
+/* Badge pills (P&I, Live-in) */
+.columns.columns1 ul {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  margin: 0 0 0.17rem 0;
+  padding: 0;
+  list-style: none;
+}
+.columns.columns1 ul li {
+  background: #fff;
+  color: #070e53;
+  border-radius: 999px;
+  padding: 3px 11px;
+  font-weight: 600;
+  font-size: 0.94rem;
+  display: inline-block;
+  margin: 0;
+}
+
+/* "Basic Home Loan" badge -- more rectangular, less pill-like */
+.columns.columns1 > div > div:first-child > p:nth-of-type(4) {
+  display: inline-block;
+  background: #fff;
+  color: #070e53;
+  border-radius: 4px;
+  padding: 2px 9px 2px 9px;
+  font-size: 0.89rem;
+  font-weight: 700;
+  margin-bottom: 0.18rem;
+  letter-spacing: 0.01em;
+  line-height: 1.18;
+}
+
+/* Make "Interest rate" and "Comparison rate" subtle labels, NOT pills */
+.columns.columns1 > div > div:first-child > p:nth-of-type(5),
+.columns.columns1 > div > div:first-child > p:nth-of-type(8) {
+  background: none;
+  color: #bcc6e8;
+  font-size: 0.87rem;
+  font-weight: 400;
+  border-radius: 0;
+  padding: 0;
+  margin: 0.07rem 0 0.11rem 0;
+  display: block;
+  line-height: 1.1;
+}
+
+/* Remove any pill styling from those two labels */
+.columns.columns1 > div > div:first-child > p:nth-of-type(5)[class],
+.columns.columns1 > div > div:first-child > p:nth-of-type(8)[class] {
+  background: none;
+  border-radius: 0;
+  padding: 0;
+}
+
+/* Rates: visually large and bold, with "p.a" small and top-aligned */
+.columns.columns1 > div > div:first-child > p:nth-of-type(6),
+.columns.columns1 > div > div:first-child > p:nth-of-type(9) {
+  font-size: 2.04rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 0.28rem 0;
+  letter-spacing: -0.01em;
+  line-height: 1.04;
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+}
+.columns.columns1 > div > div:first-child > p:nth-of-type(6) span,
+.columns.columns1 > div > div:first-child > p:nth-of-type(9) span {
+  font-size: 0.75rem;
+  vertical-align: super;
+  margin-left: 0.5px;
+  color: #fff;
+  font-weight: 400;
+  line-height: 1;
+  align-self: flex-start;
+  margin-top: -0.14em;
+  margin-bottom: 0.18rem;
+  letter-spacing: 0;
+}
+
+/* Hide unused button containers */
+.columns.columns1 .button-container {
+  display: none;
+}
+
+/* Action row: slightly more space above, compact spacing for a clean baseline */
+.columns.columns1 > div > div:first-child > p:last-of-type {
+  margin-top: 0.9rem;
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* Apply now button */
+.columns.columns1 > div > div:first-child > p:last-of-type a[title="Apply now"] {
+  background: #fff;
+  color: #070e53;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 9px 22px;
+  font-size: 0.98rem;
+  display: inline-block;
+  text-decoration: none;
+  box-shadow: none;
+  border: none;
+  min-width: 0;
+  transition: background 0.15s;
+  margin-right: 3px;
+}
+.columns.columns1 > div > div:first-child > p:last-of-type a[title="Apply now"]:hover,
+.columns.columns1 > div > div:first-child > p:last-of-type a[title="Apply now"]:focus {
+  background: #e0e0e0;
+}
+
+/* Calculate potential savings link */
+.columns.columns1 > div > div:first-child > p:last-of-type a[title="Calculate potential savings"] {
+  color: #bcc6e8;
+  text-decoration: underline;
+  font-size: 0.93rem;
+  font-weight: 400;
+  margin-left: 0;
+}
+
+/* -- Right column -- */
+.columns.columns1 > div > .columns-img-col {
+  background: #f7bba8;
+  min-height: 540px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+@media (max-width: 899px) {
+  .columns.columns1 > div > .columns-img-col {
+    min-height: 200px;
+    padding: 24px 8px;
+  }
+}
+
+/* Make icon/image fill space, remove any inner background or border */
+.columns.columns1 .columns-img-col picture,
+.columns.columns1 .columns-img-col img {
+  display: block;
+  max-width: 94vw;
+  max-width: 94%;
+  max-height: 94vh;
+  max-height: 94%;
+  width: auto;
+  height: auto;
+  margin: 0 auto;
+  object-fit: contain;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  border: none;
+  padding: 0;
+}
+
+/* Remove any extra margin/padding at img-col's center */
+.columns.columns1 .columns-img-col > * {
+  margin: 0;
+  padding: 0;
 }
