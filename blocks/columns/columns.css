@@ -739,8 +739,6 @@
   background: #fff;
   font-family: var(--body-font-family);
 }
-
-/* Top-level: flex row, tight gap, top align */
 .columns.columns8 > div {
   display: flex;
   flex-direction: row;
@@ -757,8 +755,6 @@
     max-width: 100%;
   }
 }
-
-/* Peach block: more compact, no extra margin/padding */
 .columns.columns8 .columns-img-col {
   display: flex;
   align-items: center;
@@ -774,8 +770,6 @@
   margin: 0;
   padding: 0;
 }
-
-/* House image fills the peach block more */
 .columns.columns8 .columns-img-col picture,
 .columns.columns8 .columns-img-col img {
   display: block;
@@ -786,8 +780,6 @@
   height: auto;
   background: none;
 }
-
-/* Text column: narrower, less space */
 .columns.columns8 .columns-img-col + div {
   display: flex;
   flex-direction: column;
@@ -797,8 +789,6 @@
   color: #434364;
   min-width: 0;
 }
-
-/* Heading: navy, prominent, well-spaced */
 .columns.columns8 .columns-img-col + div h2,
 .columns.columns8 .columns-img-col + div h1 {
   color: #10104A;
@@ -808,16 +798,12 @@
   font-family: var(--heading-font-family);
   line-height: 1.15;
 }
-
-/* Intro paragraph */
 .columns.columns8 .columns-img-col + div > p:first-of-type {
   font-size: 1.06rem;
   color: #434364;
   margin: 0 0 14px 0;
   line-height: 1.5;
 }
-
-/* Numbered steps */
 .columns.columns8 .columns-img-col + div ol {
   color: #434364;
   font-size: 1.01rem;
@@ -835,8 +821,6 @@
   color: #10104A;
   font-weight: 700;
 }
-
-/* Button and link row: left-aligned, tight below content */
 .columns.columns8 .columns-img-col + div > p:last-of-type {
   display: flex;
   align-items: flex-start;
@@ -847,8 +831,6 @@
   padding: 0;
   width: auto;
 }
-
-/* Button style for first link */
 .columns.columns8 .columns-img-col + div > p:last-of-type a:first-child {
   background: #10104A;
   color: #fff;
@@ -870,8 +852,6 @@
 .columns.columns8 .columns-img-col + div > p:last-of-type a:first-child:hover {
   background: #292970;
 }
-
-/* Inline link style for second link */
 .columns.columns8 .columns-img-col + div > p:last-of-type a:last-child {
   color: #10104A;
   font-size: 1.06rem;
@@ -885,8 +865,6 @@
   position: relative;
   vertical-align: middle;
 }
-
-/* Arrow after link, baseline aligned */
 .columns.columns8 .columns-img-col + div > p:last-of-type a:last-child::after {
   display: inline-block;
   margin-left: 8px;
@@ -898,12 +876,136 @@
   width: 7px;
   height: 7px;
 }
-
-/* Responsive: stack CTA row on small screens */
 @media (max-width: 540px) {
   .columns.columns8 .columns-img-col + div > p:last-of-type {
     flex-direction: column;
     align-items: stretch;
     gap: 10px;
+  }
+}
+
+
+.columns.columns9 {
+  background: #fff;
+  padding: 32px 0 48px 0;
+}
+
+.columns.columns9 > div {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  max-width: 980px;
+  margin: 0 auto;
+  gap: 32px;
+}
+
+@media (max-width: 900px) {
+  .columns.columns9 > div {
+    flex-direction: column;
+    gap: 24px;
+    max-width: 98vw;
+    padding: 0 10px;
+  }
+}
+
+/* Left column (heading) */
+.columns.columns9 > div > div:first-child {
+  flex: 0 0 195px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+/* Tighter heading style for two-line wrap */
+.columns.columns9 h2 {
+  color: #121972;
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  margin: 0;
+  padding: 0;
+}
+
+/* Right column (content) */
+.columns.columns9 > div > div:last-child {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  min-width: 0;
+}
+
+.columns.columns9 > div > div:last-child p,
+.columns.columns9 > div > div:last-child ul,
+.columns.columns9 > div > div:last-child li {
+  color: #232a4d;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-top: 0.7em;
+  margin-bottom: 0.3em;
+}
+
+/* Remove top margin from first paragraph to align with heading */
+.columns.columns9 > div > div:last-child > p:first-child {
+  margin-top: 0;
+}
+
+/* List: slightly more spacing between bullets */
+.columns.columns9 ul {
+  padding-left: 22px;
+  margin-bottom: 10px;
+  margin-top: 0.1em;
+}
+
+.columns.columns9 li {
+  margin-bottom: 2px;
+}
+
+/* Link color */
+.columns.columns9 a {
+  color: #0052cc;
+  text-decoration: underline;
+}
+
+/* Button container: left align, tight space above */
+.columns.columns9 .button-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding: 0;
+  margin: 8px 0 0 0;
+}
+
+/* Outlined button, slightly larger for better match */
+.columns.columns9 .button-container .button {
+  margin: 0;
+  border: 2px solid #121972;
+  color: #121972;
+  background: #fff;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 9px 22px;
+  min-width: 0;
+  transition: all 0.2s;
+  box-shadow: none;
+  text-align: left;
+  display: inline-block;
+}
+
+.columns.columns9 .button-container .button:hover,
+.columns.columns9 .button-container .button:focus {
+  background: #121972;
+  color: #fff;
+  border-color: #121972;
+  text-decoration: none;
+}
+
+/* Responsive: keep button left-aligned on mobile */
+@media (max-width: 900px) {
+  .columns.columns9 .button-container {
+    justify-content: flex-start;
   }
 }
