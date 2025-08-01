@@ -32,139 +32,6 @@
   }
 }
 
-.columns.columns2 {
-  background: #fff;
-  padding: 48px 0;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.columns.columns2 > div {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%;
-  gap: 0;
-}
-
-@media (width <= 899px) {
-  .columns.columns2 > div {
-    flex-direction: column;
-    align-items: center;
-    gap: 32px 0;
-    padding: 0 16px;
-  }
-
-  .columns.columns2 {
-    padding: 32px 0;
-  }
-}
-
-.columns.columns2 > div > div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  flex: 1 1 0;
-  min-width: 160px;
-  max-width: 240px;
-  text-align: center;
-  margin: 0 8px;
-  box-sizing: border-box;
-  padding-top: 0;
-  padding-bottom: 0;
-}
-
-.columns.columns2 > div > div > p:first-child picture,
-.columns.columns2 > div > div > p:first-child img {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-.columns.columns2 > div > div > p:first-child picture img,
-.columns.columns2 > div > div > p:first-child > img {
-  width: 48px;
-  height: 48px;
-  display: block;
-  margin: 0 auto 14px;
-  max-width: 100%;
-  max-height: 56px;
-  object-fit: contain;
-  opacity: 1;
-  visibility: visible;
-}
-
-.columns.columns2 > div > div > p:not(:first-child):not(.button-container) {
-  color: #111c51;
-  font-family: var(--body-font-family);
-  font-size: 16px;
-  line-height: 1.35;
-  font-weight: 500;
-  margin: 0;
-  text-align: center;
-  padding: 0;
-}
-
-.columns.columns2 > div > div > .button-container,
-.columns.columns2 > div > div > p.button-container {
-  margin-top: -10px;
-  margin-bottom: 0;
-  padding: 0;
-  line-height: 1;
-  font-size: 0.7em;
-  text-align: center;
-  display: block;
-}
-
-.columns.columns2 .button-container .button {
-  background: none;
-  color: #111c51;
-  border: none;
-  font-size: 1em;
-  font-weight: 700;
-  box-shadow: none;
-  border-radius: 0;
-  line-height: 1;
-  pointer-events: none;
-  cursor: default;
-  padding: 0;
-  margin: 0;
-  min-width: 0;
-  min-height: 0;
-  vertical-align: super;
-  text-decoration: none;
-  display: inline;
-}
-
-.columns.columns2 > div > div > p:last-child {
-  margin-bottom: 0;
-}
-
-.columns.columns2 a {
-  color: #111c51;
-  text-decoration: underline;
-  font-size: inherit;
-}
-
-.columns.columns2 > div > div {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-@media (width <= 899px) {
-  .columns.columns2 > div > div {
-    max-width: 100%;
-    margin: 0 auto;
-  }
-}
-
 .columns.columns4.block.columns-3-cols > div {
   display: flex;
   flex-direction: row;
@@ -785,8 +652,6 @@
   box-sizing: border-box;
   padding: 0;
 }
-
-/* Main grid: two columns desktop, one column mobile, no gap between */
 .columns.columns1 > div {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -802,8 +667,6 @@
     width: 100vw;
   }
 }
-
-/* Left column: center content as a group, compact spacing */
 .columns.columns1 > div > div:first-child {
   background: #070e53;
   color: #fff;
@@ -822,16 +685,12 @@
     padding: 32px 16px 32px 16px;
   }
 }
-
-/* Tighter vertical spacing between all children */
 .columns.columns1 > div > div:first-child > * {
   margin-bottom: 0.08rem;
 }
 .columns.columns1 > div > div:first-child > *:last-child {
   margin-bottom: 0;
 }
-
-/* Headline */
 .columns.columns1 h1 {
   font-size: 2.1rem;
   font-family: var(--heading-font-family);
@@ -842,8 +701,6 @@
   line-height: 1.13;
   letter-spacing: -0.008em;
 }
-
-/* Description */
 .columns.columns1 > div > div:first-child > p:nth-of-type(1) {
   color: #fff;
   font-size: 1rem;
@@ -852,8 +709,6 @@
   line-height: 1.4;
   font-weight: 400;
 }
-
-/* "Variable" label */
 .columns.columns1 > div > div:first-child > p:nth-of-type(2) {
   font-weight: 700;
   color: #fff;
@@ -861,8 +716,6 @@
   margin-bottom: 0.22rem;
   letter-spacing: 0.01em;
 }
-
-/* Badge pills (P&I, Live-in) */
 .columns.columns1 ul {
   display: flex;
   flex-direction: row;
@@ -881,8 +734,6 @@
   display: inline-block;
   margin: 0;
 }
-
-/* "Basic Home Loan" badge -- more rectangular, less pill-like */
 .columns.columns1 > div > div:first-child > p:nth-of-type(4) {
   display: inline-block;
   background: #fff;
@@ -895,8 +746,6 @@
   letter-spacing: 0.01em;
   line-height: 1.18;
 }
-
-/* Make "Interest rate" and "Comparison rate" subtle labels, NOT pills */
 .columns.columns1 > div > div:first-child > p:nth-of-type(5),
 .columns.columns1 > div > div:first-child > p:nth-of-type(8) {
   background: none;
@@ -909,16 +758,12 @@
   display: block;
   line-height: 1.1;
 }
-
-/* Remove any pill styling from those two labels */
 .columns.columns1 > div > div:first-child > p:nth-of-type(5)[class],
 .columns.columns1 > div > div:first-child > p:nth-of-type(8)[class] {
   background: none;
   border-radius: 0;
   padding: 0;
 }
-
-/* Rates: visually large and bold, with "p.a" small and top-aligned */
 .columns.columns1 > div > div:first-child > p:nth-of-type(6),
 .columns.columns1 > div > div:first-child > p:nth-of-type(9) {
   font-size: 2.04rem;
@@ -944,13 +789,9 @@
   margin-bottom: 0.18rem;
   letter-spacing: 0;
 }
-
-/* Hide unused button containers */
 .columns.columns1 .button-container {
   display: none;
 }
-
-/* Action row: slightly more space above, compact spacing for a clean baseline */
 .columns.columns1 > div > div:first-child > p:last-of-type {
   margin-top: 0.9rem;
   margin-bottom: 0;
@@ -959,8 +800,6 @@
   align-items: center;
   gap: 0.4rem;
 }
-
-/* Apply now button */
 .columns.columns1 > div > div:first-child > p:last-of-type a[title="Apply now"] {
   background: #fff;
   color: #070e53;
@@ -980,8 +819,6 @@
 .columns.columns1 > div > div:first-child > p:last-of-type a[title="Apply now"]:focus {
   background: #e0e0e0;
 }
-
-/* Calculate potential savings link */
 .columns.columns1 > div > div:first-child > p:last-of-type a[title="Calculate potential savings"] {
   color: #bcc6e8;
   text-decoration: underline;
@@ -989,8 +826,6 @@
   font-weight: 400;
   margin-left: 0;
 }
-
-/* -- Right column -- */
 .columns.columns1 > div > .columns-img-col {
   background: #f7bba8;
   min-height: 540px;
@@ -1008,8 +843,6 @@
     padding: 24px 8px;
   }
 }
-
-/* Make icon/image fill space, remove any inner background or border */
 .columns.columns1 .columns-img-col picture,
 .columns.columns1 .columns-img-col img {
   display: block;
@@ -1027,9 +860,107 @@
   border: none;
   padding: 0;
 }
-
-/* Remove any extra margin/padding at img-col's center */
 .columns.columns1 .columns-img-col > * {
   margin: 0;
   padding: 0;
+}
+
+
+.columns.columns2 {
+  background: #fff;
+  padding: 56px 0;
+  box-sizing: border-box;
+}
+
+/* Ensure a horizontal row of columns */
+.columns.columns2 > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+  gap: 28px;
+}
+
+/* Responsive: stack on small screens */
+@media (max-width: 900px) {
+  .columns.columns2 {
+    padding: 32px 0;
+  }
+  .columns.columns2 > div {
+    flex-direction: column;
+    align-items: center;
+    gap: 28px 0;
+    max-width: 100%;
+    padding: 0 12px;
+  }
+}
+
+/* Each column: center content and limit width */
+.columns.columns2 > div > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 220px;
+  min-width: 120px;
+  flex: 1 1 0;
+  margin: 0;
+  padding: 18px 0 16px 0;
+  box-sizing: border-box;
+}
+
+/* Icon/image styling */
+.columns.columns2 > div > div > p:first-child picture,
+.columns.columns2 > div > div > p:first-child img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.columns.columns2 > div > div > p:first-child picture img,
+.columns.columns2 > div > div > p:first-child > img {
+  width: 36px;
+  height: 36px;
+  margin: 0 auto 14px auto;
+  display: block;
+  object-fit: contain;
+  max-width: 100%;
+  max-height: 56px;
+}
+
+/* Text styling for features */
+.columns.columns2 > div > div > p:not(:first-child):not(.button-container) {
+  color: #131862;
+  font-family: var(--body-font-family);
+  font-size: 15px;
+  line-height: 1.34;
+  font-weight: 500;
+  margin: 0 0 0.18em 0;
+  text-align: center;
+  padding: 0;
+  word-break: break-word;
+}
+
+/* Remove default bottom margin for last text block */
+.columns.columns2 > div > div > p:last-child {
+  margin-bottom: 0;
+}
+
+/* Hide footnote/number buttons if present */
+.columns.columns2 > div > div > .button-container,
+.columns.columns2 > div > div > p.button-container {
+  display: none;
+}
+
+/* Ensure links match design */
+.columns.columns2 a {
+  color: #131862;
+  text-decoration: underline;
+  font-size: inherit;
 }
