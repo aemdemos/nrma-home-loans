@@ -421,8 +421,6 @@
   width: 100%;
   min-width: 0;
 }
-
-/* Calculator icon styling */
 .cards.cards10 .cards-card-body:not(:first-child)::before {
   display: block;
   width: 46px;
@@ -432,11 +430,9 @@
   background: url('data:image/svg+xml;utf8,<svg width="46" height="46" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="3" width="22" height="26" rx="4" stroke="%2303258C" stroke-width="2"/><rect x="10" y="8" width="12" height="3" rx="1.5" fill="%2303258C"/><rect x="10" y="14" width="4" height="4" rx="2" fill="%2303258C"/><rect x="18" y="14" width="4" height="4" rx="2" fill="%2303258C"/><rect x="10" y="20" width="4" height="4" rx="2" fill="%2303258C"/><rect x="18" y="20" width="4" height="4" rx="2" fill="%2303258C"/></svg>') no-repeat center/contain;
   content: "";
 }
-
-/* Heading styles */
 .cards.cards10 .cards-card-body:not(:first-child) h3 {
   color: #03258C;
-  font-size: 1.31rem; /* ~21px */
+  font-size: 1.31rem;
   font-family: var(--heading-font-family);
   font-weight: 600;
   text-align: center;
@@ -444,11 +440,9 @@
   line-height: 1.15;
   letter-spacing: 0.01em;
 }
-
-/* Description style, max-width for better wrapping */
 .cards.cards10 .cards-card-body:not(:first-child) p:not(.button-container) {
   color: #4B5563;
-  font-size: 1.09rem; /* ~17.5px */
+  font-size: 1.09rem;
   text-align: center;
   font-weight: 400;
   margin: 0 0 20px 0;
@@ -456,8 +450,6 @@
   padding: 0;
   max-width: 350px;
 }
-
-/* Button container centering */
 .cards.cards10 .cards-card-body:not(:first-child) .button-container {
   width: 100%;
   display: flex;
@@ -465,15 +457,13 @@
   margin: 0;
   padding: 0;
 }
-
-/* Outlined pill button matches the reference more closely */
 .cards.cards10 .cards-card-body:not(:first-child) .button-container .button {
   background: #fff;
   color: #03258C;
   border: 2px solid #03258C;
   border-radius: 32px;
   padding: 14px 58px;
-  font-size: 1.09rem; /* ~17.5px */
+  font-size: 1.09rem;
   font-weight: 600;
   min-width: 232px;
   max-width: 95%;
@@ -492,9 +482,164 @@
   border-color: #03258C;
   text-decoration: none;
 }
-
-/* Remove button's default margin from base styles for consistency */
 .cards.cards10 .cards-card-body:not(:first-child) .button-container .button {
   margin-top: 0;
   margin-bottom: 0;
+}
+
+
+.cards {
+  background: #f9f7f7;
+  padding: 48px 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.cards > ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  gap: 32px;
+  max-width: 864px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  width: auto;
+  box-sizing: border-box;
+}
+
+.cards > ul > li {
+  flex: 0 1 400px;
+  max-width: 400px;
+  min-width: 360px;
+  background: #fff;
+  border: 1px solid #ececec;
+  border-radius: 4px;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.cards > ul > li .cards-card-body:first-child {
+  display: none;
+}
+
+.cards > ul > li .cards-card-body {
+  padding: 44px 32px 40px 32px;
+  margin: 0;
+  color: #001957;
+  font-size: 16px;
+  font-family: var(--body-font-family, Arial, sans-serif);
+  font-weight: 500;
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+
+.cards > ul > li h3,
+.cards > ul > li h4 {
+  color: #001957;
+  margin-top: 0.8em;
+  margin-bottom: 0.25em;
+}
+
+.cards > ul > li h3 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.cards > ul > li h4 {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.cards > ul > li p,
+.cards > ul > li ul {
+  margin-top: 0.6em;
+  margin-bottom: 0.6em;
+}
+
+.cards > ul > li ul {
+  padding-left: 20px;
+}
+
+.cards .button-container {
+  margin-top: 36px;
+  margin-bottom: 0;
+  text-align: left;
+  width: 100%;
+}
+
+.cards .button-container .button {
+  background: #001957;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 32px;
+  margin: 0;
+  box-shadow: none;
+  min-width: 190px;
+  text-align: left;
+  display: inline-block;
+}
+
+.cards .button-container .button.secondary,
+.cards .button-container .button[title="2"],
+.cards .button-container .button[title="Resume application"] {
+  background: #fff;
+  color: #001957;
+  border: 1px solid #001957;
+}
+
+.cards > ul > li .cards-card-body a:not(.button) {
+  color: #001957;
+}
+
+.cards > ul > li .cards-card-body a:not(.button):hover {
+  color: #000d2e;
+  text-decoration: underline;
+}
+
+/* Hide badge/chip if present as first child */
+.cards > ul > li .cards-card-body > p:first-child {
+  display: none;
+}
+
+/* Only show two cards on desktop */
+.cards > ul > li:nth-child(n+3) {
+  display: none;
+}
+
+/* Responsive stacking for mobile */
+@media (max-width: 900px) {
+  .cards {
+    padding: 32px 0;
+  }
+  .cards > ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    max-width: 480px;
+    width: 100%;
+  }
+  .cards > ul > li {
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+  .cards > ul > li .cards-card-body {
+    padding: 24px 16px 24px 16px;
+  }
+  .cards > ul > li:nth-child(n+3) {
+    display: none;
+  }
 }
