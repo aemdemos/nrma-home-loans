@@ -4,7 +4,7 @@ This is a project created by AEMY.
 
 ## Environments
 
-- Preview: https://main--nrma-home-loans--aemdemos.aem.page/
+- Preview: [https://main--nrma-home-loans--aemdemos.aem.page/](https://main--nrma-home-loans--aemdemos.aem.page/home-loans)
 - Live: https://main--nrma-home-loans--aemdemos.aem.live/
 
 ## Installation
